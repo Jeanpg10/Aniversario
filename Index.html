@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fernanda 💙</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    font-family:'Segoe UI', sans-serif;
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* estrellas */
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    padding:20px;
+    z-index:2;
+    position:relative;
+}
+
+input{
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    text-align:center;
+    margin-top:15px;
+}
+
+button{
+    margin-top:20px;
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4da6;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff1a8c;
+    transform:scale(1.05);
+}
+
+img{
+    width:230px;
+    border-radius:15px;
+    margin-top:15px;
+    box-shadow:0 0 20px rgba(255,255,255,0.4);
+}
+
+/* máquina de escribir */
+.typewriter{
+    border-right:2px solid white;
+    white-space:nowrap;
+    overflow:hidden;
+    animation: typing 3s steps(40,end), blink .7s infinite;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+@keyframes blink{
+    50%{border-color:transparent;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="content">
+    <h1 class="typewriter">Solo para Fernanda 💙</h1>
+    <p>Escribe nuestra palabra secreta:</p>
+    <input id="clave" placeholder="🐟💋">
+    <button onclick="verificar()">Entrar</button>
+</div>
+
+<script>
+
+/* activar solo desde 30 marzo 2026 */
+const fechaActivacion = new Date("2026-03-30T00:00:00");
+if(new Date() < fechaActivacion){
+    document.getElementById("content").innerHTML = `
+        <h1>Esta sorpresa se desbloquea el 30 de marzo 💙</h1>
+    `;
+}
+
+/* estrellas */
+for(let i=0;i<120;i++){
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.width = Math.random()*3 + "px";
+    star.style.height = star.style.width;
+    star.style.top = Math.random()*100 + "vh";
+    star.style.left = Math.random()*100 + "vw";
+    document.body.appendChild(star);
+}
+
+/* lógica */
+const fechaInicio = new Date("2025-03-30T00:00:00");
+
+function verificar(){
+    const clave = document.getElementById("clave").value.toLowerCase();
+    if(clave === "besesito"){
+        inicio();
+    }else{
+        alert("Esa no es nuestra palabra secreta 🐟");
+    }
+}
+
+function inicio(){
+    const ahora = new Date();
+    const diferencia = ahora - fechaInicio;
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+    document.getElementById("content").innerHTML = `
+        <h1 class="typewriter">Fernanda 💖</h1>
+        <p>Llevamos ${dias} días juntos desde el 30 de marzo.</p>
+        <img src="foto1.jpg">
+        <button onclick="segunda()">Siguiente</button>
+    `;
+}
+
+function segunda(){
+    document.getElementById("content").innerHTML = `
+        <h1>Un año contigo ✨</h1>
+        <p>Risas, abrazos y nuestros besesitos 🐟💋</p>
+        <img src="foto2.jpg">
+        <button onclick="promesa()">Hay algo más...</button>
+    `;
+}
+
+function promesa(){
+    document.getElementById("content").innerHTML = `
+        <h1>Promesa 💍</h1>
+        <p>Prometo seguir eligiéndote cada día.</p>
+        <p>¿Aceptas esta promesa?</p>
+        <button onclick="acepta()">Sí, acepto 💕</button>
+    `;
+}
+
+function acepta(){
+    document.getElementById("content").innerHTML = `
+        <h1>Siempre tú 💙</h1>
+        <p>Feliz aniversario, amor.</p>
+        <p>Que nunca nos falten los besesitos 🐟💋</p>
+        <button onclick="window.open('https://www.youtube.com/results?search_query=Dime+Kevin+Kaarl')">
+        Escuchar nuestra canción 🎵
+        </button>
+    `;
+
+    lanzarConfeti();
+}
+
+function lanzarConfeti(){
+    for(let i=0;i<120;i++){
+        const confeti = document.createElement("div");
+        confeti.style.position="absolute";
+        confeti.style.top=Math.random()*100+"vh";
+        confeti.style.left=Math.random()*100+"vw";
+        confeti.style.fontSize="20px";
+        confeti.innerHTML="🎉";
+        document.body.appendChild(confeti);
+        setTimeout(()=>{confeti.remove();},3000);
+    }
+}
+
+</script>
+
+</body>
+</html>
